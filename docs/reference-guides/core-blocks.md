@@ -278,6 +278,15 @@ Add a link to a downloadable file. ([Source](https://github.com/WordPress/gutenb
 -	**Supports:** ~~html~~, ~~multiple~~, ~~reusable~~
 -	**Attributes:** 
 
+## Form
+
+A form. ([Source](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-library/src/form))
+
+-	**Name:** core/form
+-	**Category:** common
+-	**Supports:** 
+-	**Attributes:** 
+
 ## Classic
 
 Use the classic WordPress editor. ([Source](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-library/src/freeform))
@@ -341,6 +350,15 @@ Insert an image to make a visual statement. ([Source](https://github.com/WordPre
 -	**Category:** media
 -	**Supports:** anchor, behaviors (lightbox), color (~~background~~, ~~text~~), filter (duotone)
 -	**Attributes:** align, alt, aspectRatio, caption, height, href, id, linkClass, linkDestination, linkTarget, rel, scale, sizeSlug, title, url, width
+
+## Input field
+
+The basic building block for forms. ([Source](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-library/src/input-field))
+
+-	**Name:** core/input-field
+-	**Category:** common
+-	**Supports:** 
+-	**Attributes:** inlineLabel, label, type
 
 ## Latest Comments
 
