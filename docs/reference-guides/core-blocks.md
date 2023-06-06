@@ -293,6 +293,7 @@ The basic building block for forms. ([Source](https://github.com/WordPress/guten
 
 -	**Name:** core/form-input
 -	**Category:** common
+-	**Parent:** core/form
 -	**Supports:** anchor, spacing (margin), ~~reusable~~
 -	**Attributes:** inlineLabel, label, name, placeholder, required, type
 
@@ -302,6 +303,7 @@ A submission button for forms. ([Source](https://github.com/WordPress/gutenberg/
 
 -	**Name:** core/form-submit-button
 -	**Category:** common
+-	**Parent:** core/form
 -	**Supports:** 
 -	**Attributes:** 
 
