@@ -565,7 +565,24 @@ export function getDefaultBlockName() {
  * @return {?Object} Block type.
  */
 export function getBlockType( name ) {
-	return select( blocksStore )?.getBlockType( name );
+	const blockType = select( blocksStore ).getBlockType( name );
+	if ( ! blockType ) {
+		if ( ! serverSideBlockDefinitions[ name ] ) {
+			throw new Error( 'block not found: ' + name );
+		}
+		const mods = window.wp.importmap[ name ];
+		for ( const mod of mods ) {
+			const src = mod.src;
+			const newNode = document.createElement( 'script' );
+			newNode.src = src;
+			newNode.onload = () =>
+				console.log( 'loaded', name, mod.handle, src );
+			newNode.onerror = () =>
+				console.log( 'failed to load', name, mod.handle, src );
+			document.body.appendChild( newNode );
+		}
+	}
+	return blockType;
 }
 
 /**
