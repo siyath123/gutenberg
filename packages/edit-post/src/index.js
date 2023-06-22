@@ -69,7 +69,7 @@ export function initializeEditor(
 		dispatch( editPostStore ).setIsListViewOpened( true );
 	}
 
-	registerCoreBlocks();
+	registerCoreBlocks( [] );
 	registerLegacyWidgetBlock( { inserter: false } );
 	registerWidgetGroupBlock( { inserter: false } );
 	if ( process.env.IS_GUTENBERG_PLUGIN ) {
