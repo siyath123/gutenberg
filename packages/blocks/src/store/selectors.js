@@ -114,8 +114,17 @@ export const getBlockTypes = createSelector(
  * @return {Object?} Block Type.
  */
 export function getBlockType( state, name ) {
-	return state.blockTypes[ name ];
+	const blockType = state.blockTypes[ name ];
+	// if ( ! blockType ) {
+	// 	throw new Error( 'block not found: ' + name );
+	// }
+	return blockType;
 }
+
+// export function loadBlockType( state, name ) {
+// 	const blockType = state.blockTypes[ name ];
+// 	return blockType;
+// }
 
 /**
  * Returns block styles by block name.

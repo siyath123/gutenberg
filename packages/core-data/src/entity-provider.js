@@ -176,16 +176,15 @@ export function useEntityBlockEditor( kind, name, { id: _id } = {} ) {
 		// Guard against other instances that might have
 		// set content to a function already or the blocks are already in state.
 		if ( content && typeof content !== 'function' && ! blocks ) {
-			const parsedContent = parse( content );
-			editEntityRecord(
-				kind,
-				name,
-				id,
-				{
-					blocks: parsedContent,
-				},
-				{ undoIgnore: true }
-			);
+			parse( content ).then( ( parsedContent ) => {
+				editEntityRecord(
+					kind,
+					name,
+					id,
+					{ blocks: parsedContent },
+					{ undoIgnore: true }
+				);
+			} );
 		}
 	}, [ content ] );
 

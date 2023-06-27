@@ -61,9 +61,10 @@ export default function PostTextEditor() {
 	 */
 	const stopEditing = () => {
 		if ( isDirty ) {
-			const blocks = parse( value );
-			resetEditorBlocks( blocks );
-			setIsDirty( false );
+			parse( value ).then( ( blocks ) => {
+				resetEditorBlocks( blocks );
+				setIsDirty( false );
+			} );
 		}
 	};
 
@@ -71,8 +72,9 @@ export default function PostTextEditor() {
 	useEffect( () => {
 		return () => {
 			if ( valueRef.current ) {
-				const blocks = parse( valueRef.current );
-				resetEditorBlocks( blocks );
+				parse( valueRef.current ).then( ( blocks ) => {
+					resetEditorBlocks( blocks );
+				} );
 			}
 		};
 	}, [] );

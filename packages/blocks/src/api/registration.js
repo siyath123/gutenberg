@@ -8,7 +8,7 @@ import { camelCase } from 'change-case';
 /**
  * WordPress dependencies
  */
-import { select, dispatch } from '@wordpress/data';
+import { select, resolveSelect, dispatch } from '@wordpress/data';
 import { _x } from '@wordpress/i18n';
 
 /**
@@ -285,10 +285,13 @@ export function registerBlockType( blockNameOrMetadata, settings ) {
 		);
 		return;
 	}
-	if ( select( blocksStore ).getBlockType( name ) ) {
-		console.error( 'Block "' + name + '" is already registered.' );
-		return;
-	}
+
+	try {
+		if ( select( blocksStore ).getBlockType( name ) ) {
+			console.error( 'Block "' + name + '" is already registered.' );
+			return;
+		}
+	} catch {}
 
 	if ( isObject( blockNameOrMetadata ) ) {
 		unstable__bootstrapServerSideBlockDefinitions( {
@@ -565,26 +568,12 @@ export function getDefaultBlockName() {
  * @return {?Object} Block type.
  */
 export function getBlockType( name ) {
-	const blockType = select( blocksStore ).getBlockType( name );
-	if ( ! blockType ) {
-		if ( ! serverSideBlockDefinitions[ name ] ) {
-			throw new Error( 'block not found: ' + name );
-		}
-		const mods = window.wp.importmap[ name ];
-		for ( const mod of mods ) {
-			const src = mod.src;
-			const newNode = document.createElement( 'script' );
-			newNode.src = src;
-			newNode.onload = () =>
-				console.log( 'loaded', name, mod.handle, src );
-			newNode.onerror = () =>
-				console.log( 'failed to load', name, mod.handle, src );
-			document.body.appendChild( newNode );
-		}
-	}
-	return blockType;
+	return select( blocksStore ).getBlockType( name );
 }
 
+export function loadBlockType( name ) {
+	return resolveSelect( blocksStore ).getBlockType( name );
+}
 /**
  * Returns all registered blocks.
  *

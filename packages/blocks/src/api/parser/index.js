@@ -10,7 +10,7 @@ import { autop } from '@wordpress/autop';
 import {
 	getFreeformContentHandlerName,
 	getUnregisteredTypeHandlerName,
-	getBlockType,
+	loadBlockType,
 } from '../registration';
 import { getSaveContent } from '../serializer';
 import { validateBlock } from '../validation';
@@ -192,7 +192,7 @@ function applyBlockValidation( unvalidatedBlock, blockType ) {
  *
  * @return {WPBlock | undefined} Fully parsed block.
  */
-export function parseRawBlock( rawBlock, options ) {
+export async function parseRawBlock( rawBlock, options ) {
 	let normalizedBlock = normalizeRawBlock( rawBlock, options );
 
 	// During the lifecycle of the project, we renamed some old blocks
@@ -201,12 +201,12 @@ export function parseRawBlock( rawBlock, options ) {
 	normalizedBlock = convertLegacyBlocks( normalizedBlock );
 
 	// Try finding the type for known block name.
-	let blockType = getBlockType( normalizedBlock.blockName );
+	let blockType = await loadBlockType( normalizedBlock.blockName );
 
 	// If not blockType is found for the specified name, fallback to the "unregistedBlockType".
 	if ( ! blockType ) {
 		normalizedBlock = createMissingBlockType( normalizedBlock );
-		blockType = getBlockType( normalizedBlock.blockName );
+		blockType = await loadBlockType( normalizedBlock.blockName );
 	}
 
 	// If it's an empty freeform block or there's no blockType (no missing block handler)
@@ -222,8 +222,13 @@ export function parseRawBlock( rawBlock, options ) {
 	}
 
 	// Parse inner blocks recursively.
-	const parsedInnerBlocks = normalizedBlock.innerBlocks
-		.map( ( innerBlock ) => parseRawBlock( innerBlock, options ) )
+	const parsedInnerBlocks = (
+		await Promise.all(
+			normalizedBlock.innerBlocks.map( ( innerBlock ) =>
+				parseRawBlock( innerBlock, options )
+			)
+		)
+	 )
 		// See https://github.com/WordPress/gutenberg/pull/17164.
 		.filter( ( innerBlock ) => !! innerBlock );
 
@@ -306,12 +311,13 @@ export function parseRawBlock( rawBlock, options ) {
  *
  * @return {Array} Block list.
  */
-export default function parse( content, options ) {
-	return grammarParse( content ).reduce( ( accumulator, rawBlock ) => {
-		const block = parseRawBlock( rawBlock, options );
+export default async function parse( content, options ) {
+	const blocks = [];
+	for ( const rawBlock of grammarParse( content ) ) {
+		const block = await parseRawBlock( rawBlock, options );
 		if ( block ) {
-			accumulator.push( block );
+			blocks.push( block );
 		}
-		return accumulator;
-	}, [] );
+	}
+	return blocks;
 }

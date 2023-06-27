@@ -13,6 +13,7 @@
 		"customClassName": true,
 		"reusable": false
 	},
+	"editorScript": "wp-block-widget-group-editor",
 	"editorStyle": "wp-block-widget-group-editor",
 	"style": "wp-block-widget-group"
 }

@@ -101,7 +101,7 @@ export const addTemplate =
 					'postType',
 					'wp_template',
 					newTemplate.id,
-					{ blocks: parse( template.content ) },
+					{ blocks: await parse( template.content ) },
 					{ undoIgnore: true }
 				);
 		}
