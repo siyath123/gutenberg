@@ -69,7 +69,7 @@ export function initializeEditor(
 
 	setDefaultBlockName( 'core/paragraph' );
 	if ( window.wp && window.wp.oldEditor ) {
-		setFreeformContentHandlerName( 'core/classic' );
+		setFreeformContentHandlerName( 'core/freeform' );
 	}
 	setUnregisteredTypeHandlerName( 'core/missing' );
 	setGroupingBlockName( 'core/group' );

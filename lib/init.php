@@ -58,13 +58,10 @@ function gutenberg_menu() {
 }
 add_action( 'admin_menu', 'gutenberg_menu', 9 );
 
-function disable_scripts() {
-	// disable loading and enqueuing block editor scripts and styles
-	// can't be `__return_false` because this function is already registered for this filter
-	return false;
-}
+// disable loading and enqueuing block editor scripts and styles
+add_filter( 'should_load_block_editor_scripts_and_styles', '__return_false', 11 );
 
-add_filter( 'should_load_block_editor_scripts_and_styles', 'disable_scripts' );
+add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
 // Add `editorScript` to Gutenberg block.json data if it's missing
 function add_core_editor_script( $metadata ) {
@@ -85,23 +82,38 @@ add_filter( 'block_type_metadata', 'add_core_editor_script' );
 function get_block_importmap() {
 	$block_registry = WP_Block_Type_Registry::get_instance();
 	$scripts = wp_scripts();
+	$styles = wp_styles();
 	$blocks         = array();
 
 	foreach ( $block_registry->get_all_registered() as $block_name => $block_type ) {
-		if ( ! isset( $block_type->editor_script_handles ) ) {
-			continue;
-		}
 		$imports = array();
-		foreach ( $block_type->editor_script_handles as $handle ) {
-			$spec = $scripts->registered[ $handle ];
-			$imports[] = array(
-				'handle' => $spec->handle,
-				'src' => $spec->src,
-				'ver' => $spec->ver
-			);
+		if ( isset( $block_type->editor_script_handles ) ) {
+			foreach ( $block_type->editor_script_handles as $handle ) {
+				$spec = $scripts->registered[ $handle ];
+				$imports[] = array(
+					'type' => 'script',
+					'handle' => $spec->handle,
+					'src' => $spec->src,
+					'ver' => $spec->ver
+				);
+			}
 		}
-		$blocks[ $block_name ] = $imports;
+		if ( isset( $block_type->editor_style_handles ) ) {
+			foreach ( $block_type->editor_style_handles as $handle ) {
+				$spec = $styles->registered[ $handle ];
+				$imports[] = array(
+					'type' => 'style',
+					'handle' => $spec->handle,
+					'src' => $spec->src,
+					'ver' => $spec->ver
+				);
+			}
+		}
+		if ( ! empty( $imports ) ) {
+			$blocks[ $block_name ] = $imports;
+		}
 	}
+
 	return $blocks;
 }
 

@@ -1,3 +1,21 @@
+function loaderElement( type, src ) {
+	if ( type === 'script' ) {
+		const script = document.createElement( 'script' );
+		script.src = src;
+		return script;
+	}
+
+	if ( type === 'style' ) {
+		const link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = src;
+		return link;
+	}
+
+	return null;
+}
+
 export const getBlockType = ( name ) => async () => {
 	const mods = window.wp.importmap[ name ];
 	if ( ! mods ) {
@@ -5,25 +23,31 @@ export const getBlockType = ( name ) => async () => {
 	}
 
 	await Promise.all(
-		mods.map(
-			( mod ) =>
-				new Promise( ( resolve, reject ) => {
-					console.log( 'loading', name, mod.handle );
-					const src = mod.src;
-					const newNode = document.createElement( 'script' );
-					newNode.src = src;
-					newNode.onload = () => {
-						console.log( 'loaded', mod.handle );
-						resolve();
-					};
-					newNode.onerror = () =>
-						reject(
-							new Error(
-								`Failed to load ${ name } ${ mod.handle } ${ src }`
-							)
+		mods
+			.filter( ( mod ) => mod.src )
+			.map(
+				( mod ) =>
+					new Promise( ( resolve, reject ) => {
+						console.log(
+							'loading',
+							name,
+							mod.type,
+							mod.handle,
+							mod.src
 						);
-					document.body.appendChild( newNode );
-				} )
-		)
+						const node = loaderElement( mod.type, mod.src );
+						node.onload = () => {
+							console.log( 'loaded', mod.type, mod.handle );
+							resolve();
+						};
+						node.onerror = () =>
+							reject(
+								new Error(
+									`Failed to load ${ mod.type } ${ name } ${ mod.handle } ${ mod.src }`
+								)
+							);
+						document.body.appendChild( node );
+					} )
+			)
 	);
 };
