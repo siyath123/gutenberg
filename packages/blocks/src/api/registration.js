@@ -1,11 +1,6 @@
 /* eslint no-console: [ 'error', { allow: [ 'error', 'warn' ] } ] */
 
 /**
- * External dependencies
- */
-import { camelCase } from 'change-case';
-
-/**
  * WordPress dependencies
  */
 import { select, resolveSelect, dispatch } from '@wordpress/data';
@@ -17,6 +12,7 @@ import { _x } from '@wordpress/i18n';
 import i18nBlockSchema from './i18n-block.json';
 import { BLOCK_ICON_DEFAULT } from './constants';
 import { store as blocksStore } from '../store';
+import { getBootstrappedBlockType } from '../store/selectors';
 
 /**
  * An icon type definition. One of a Dashicon slug, an element,
@@ -129,8 +125,6 @@ import { store as blocksStore } from '../store';
  *                                              then no preview is shown.
  */
 
-const serverSideBlockDefinitions = {};
-
 function isObject( object ) {
 	return object !== null && typeof object === 'object';
 }
@@ -142,49 +136,8 @@ function isObject( object ) {
  */
 // eslint-disable-next-line camelcase
 export function unstable__bootstrapServerSideBlockDefinitions( definitions ) {
-	for ( const [ blockName, definition ] of Object.entries( definitions ) ) {
-		const serverDefinition = serverSideBlockDefinitions[ blockName ];
-		// Don't overwrite if already set. It covers the case when metadata
-		// was initialized from the server.
-		if ( serverDefinition ) {
-			// We still need to polyfill `apiVersion` for WordPress version
-			// lower than 5.7. If it isn't present in the definition shared
-			// from the server, we try to fallback to the definition passed.
-			// @see https://github.com/WordPress/gutenberg/pull/29279
-			if (
-				serverDefinition.apiVersion === undefined &&
-				definition.apiVersion
-			) {
-				serverDefinition.apiVersion = definition.apiVersion;
-			}
-			// The `ancestor` prop is not included in the definitions shared
-			// from the server yet, so it needs to be polyfilled as well.
-			// @see https://github.com/WordPress/gutenberg/pull/39894
-			if (
-				serverDefinition.ancestor === undefined &&
-				definition.ancestor
-			) {
-				serverDefinition.ancestor = definition.ancestor;
-			}
-			// The `selectors` prop is not yet included in the server provided
-			// definitions. Polyfill it as well. This can be removed when the
-			// minimum supported WordPress is >= 6.3.
-			if (
-				serverDefinition.selectors === undefined &&
-				definition.selectors
-			) {
-				serverDefinition.selectors = definition.selectors;
-			}
-			continue;
-		}
-
-		serverSideBlockDefinitions[ blockName ] = Object.fromEntries(
-			Object.entries( definition )
-				.filter(
-					( [ , value ] ) => value !== null && value !== undefined
-				)
-				.map( ( [ key, value ] ) => [ camelCase( key ), value ] )
-		);
+	for ( const [ name, blockType ] of Object.entries( definitions ) ) {
+		dispatch( blocksStore ).addBootstrappedBlock( name, blockType );
 	}
 }
 
@@ -306,7 +259,7 @@ export function registerBlockType( blockNameOrMetadata, settings ) {
 		styles: [],
 		variations: [],
 		save: () => null,
-		...serverSideBlockDefinitions[ name ],
+		...select( blocksStore ).getBootstrappedBlockType( name ),
 		...settings,
 	};
 

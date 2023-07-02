@@ -167,6 +167,14 @@ export function addBlockTypes( blockTypes ) {
 	};
 }
 
+export function addBootstrappedBlock( name, blockType ) {
+	return {
+		type: 'ADD_BOOTSTRAPPED_BLOCK_TYPE',
+		name,
+		blockType,
+	};
+}
+
 /**
  * Signals that the passed block type's settings should be stored in the state.
  *

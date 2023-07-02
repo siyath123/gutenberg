@@ -76,6 +76,15 @@ export const getBlockTypes = createSelector(
 	( state ) => [ state.blockTypes ]
 );
 
+export const getBlockNames = createSelector(
+	( state ) => Object.keys( state.bootstrappedBlockTypes ),
+	( state ) => [ state.bootstrappedBlockTypes ]
+);
+
+export const getBootstrappedBlockType = ( state, name ) => {
+	return state.bootstrappedBlockTypes[ name ];
+};
+
 /**
  * Returns a block type by name.
  *
@@ -114,11 +123,7 @@ export const getBlockTypes = createSelector(
  * @return {Object?} Block Type.
  */
 export function getBlockType( state, name ) {
-	const blockType = state.blockTypes[ name ];
-	// if ( ! blockType ) {
-	// 	throw new Error( 'block not found: ' + name );
-	// }
-	return blockType;
+	return state.blockTypes[ name ];
 }
 
 // export function loadBlockType( state, name ) {
