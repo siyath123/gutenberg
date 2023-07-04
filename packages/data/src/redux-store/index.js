@@ -233,11 +233,24 @@ export default function createReduxStore( key, options ) {
 					selector.registry = registry;
 				}
 				const boundSelector = ( ...args ) => {
+					if (
+						selector.normalizeArgs &&
+						typeof selector.normalizeArgs === 'function' &&
+						args?.length
+					) {
+						args = selector.normalizeArgs( args );
+					}
 					const state = store.__unstableOriginalGetState();
 					return selector( state.root, ...args );
 				};
 
+				// Expose normalization method on the bound selector
+				// in order that it can be called when fullfilling
+				// the resolver.
+				boundSelector.normalizeArgs = selector.normalizeArgs;
+
 				const resolver = resolvers[ selectorName ];
+
 				if ( ! resolver ) {
 					boundSelector.hasResolver = false;
 					return boundSelector;
@@ -601,8 +614,12 @@ function mapSelectorWithResolver(
 	}
 
 	const selectorResolver = ( ...args ) => {
-		if ( resolver.normalizeArgs && args?.length ) {
-			args = resolver.normalizeArgs( args );
+		if (
+			selector.normalizeArgs &&
+			typeof selector.normalizeArgs === 'function' &&
+			args?.length
+		) {
+			args = selector.normalizeArgs( args );
 		}
 		fulfillSelector( args );
 		return selector( ...args );
