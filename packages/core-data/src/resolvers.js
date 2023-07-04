@@ -14,11 +14,7 @@ import apiFetch from '@wordpress/api-fetch';
  */
 import { STORE_NAME } from './name';
 import { getOrLoadEntitiesConfig, DEFAULT_ENTITY_KEY } from './entities';
-import {
-	forwardResolver,
-	getNormalizedCommaSeparable,
-	isNumericID,
-} from './utils';
+import { forwardResolver, getNormalizedCommaSeparable } from './utils';
 
 /**
  * Requests authors from the REST API.
@@ -124,18 +120,6 @@ export const getEntityRecord =
 			dispatch.__unstableReleaseStoreLock( lock );
 		}
 	};
-
-getEntityRecord.normalizeArgs = ( args ) => {
-	let key = args && args[ 2 ];
-
-	// If key is numeric, assume it's an ID and coerce to number.
-	if ( key && typeof key === 'string' && isNumericID( key ) ) {
-		key = Number( key );
-	}
-
-	args[ 2 ] = key;
-	return args;
-};
 
 /**
  * Requests an entity's record from the REST API.
