@@ -14,6 +14,7 @@ import { createHooks, applyFilters } from '@wordpress/hooks';
 import {
 	getBlockType,
 	getBlockTypes,
+	loadBlockType,
 	getGroupingBlockName,
 } from './registration';
 import {
@@ -579,12 +580,16 @@ export function switchToBlockType( blocks, name ) {
  *
  * @return {Object} block.
  */
-export const getBlockFromExample = ( name, example ) => {
-	return createBlock(
-		name,
-		example.attributes,
-		( example.innerBlocks ?? [] ).map( ( innerBlock ) =>
-			getBlockFromExample( innerBlock.name, innerBlock )
-		)
-	);
+export const getBlockFromExample = async ( name, example ) => {
+	let innerBlocks = [];
+	if ( example.innerBlocks ) {
+		innerBlocks = await Promise.all(
+			example.innerBlocks.map( ( innerBlock ) =>
+				getBlockFromExample( innerBlock.name, innerBlock )
+			)
+		);
+	}
+
+	await loadBlockType( name );
+	return createBlock( name, example.attributes, innerBlocks );
 };

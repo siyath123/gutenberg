@@ -9,7 +9,7 @@ import createSelector from 'rememo';
 import {
 	store as blocksStore,
 	getBlockType,
-	getBlockTypes,
+	getBootstrappedBlockTypes,
 	getBlockVariations,
 	hasBlockSupport,
 	getPossibleBlockTransformations,
@@ -2047,7 +2047,7 @@ export const getInserterItems = createSelector(
 			buildScope: 'inserter',
 		} );
 
-		const blockTypeInserterItems = getBlockTypes()
+		const blockTypeInserterItems = getBootstrappedBlockTypes()
 			.filter( ( blockType ) =>
 				canIncludeBlockTypeInInserter( state, blockType, rootClientId )
 			)
@@ -2059,10 +2059,9 @@ export const getInserterItems = createSelector(
 			if ( ! variations.some( ( { isDefault } ) => isDefault ) ) {
 				accumulator.push( item );
 			}
-			if ( variations.length ) {
-				const variationMapper = getItemFromVariation( state, item );
-				accumulator.push( ...variations.map( variationMapper ) );
-			}
+			accumulator.push(
+				...variations.map( getItemFromVariation( state, item ) )
+			);
 			return accumulator;
 		}, [] );
 
@@ -2085,7 +2084,7 @@ export const getInserterItems = createSelector(
 		state.settings.allowedBlockTypes,
 		state.settings.templateLock,
 		getReusableBlocks( state ),
-		getBlockTypes(),
+		getBootstrappedBlockTypes(),
 	]
 );
 
@@ -2121,17 +2120,14 @@ export const getBlockTransformItems = createSelector(
 		const buildBlockTypeTransformItem = buildBlockTypeItem( state, {
 			buildScope: 'transform',
 		} );
-		const blockTypeTransformItems = getBlockTypes()
+		const blockTypeTransformItems = getBootstrappedBlockTypes()
 			.filter( ( blockType ) =>
 				canIncludeBlockTypeInInserter( state, blockType, rootClientId )
 			)
 			.map( buildBlockTypeTransformItem );
 
 		const itemsByName = Object.fromEntries(
-			Object.entries( blockTypeTransformItems ).map( ( [ , value ] ) => [
-				value.name,
-				value,
-			] )
+			blockTypeTransformItems.map( ( value ) => [ value.name, value ] )
 		);
 
 		const possibleTransforms = getPossibleBlockTransformations(
@@ -2144,7 +2140,7 @@ export const getBlockTransformItems = createSelector(
 		}, [] );
 		return orderBy(
 			possibleTransforms,
-			( block ) => itemsByName[ block.name ].frecency,
+			( block ) => block.frecency,
 			'desc'
 		);
 	},
@@ -2154,7 +2150,7 @@ export const getBlockTransformItems = createSelector(
 		state.preferences.insertUsage,
 		state.settings.allowedBlockTypes,
 		state.settings.templateLock,
-		getBlockTypes(),
+		getBootstrappedBlockTypes(),
 	]
 );
 
@@ -2178,7 +2174,6 @@ export const hasInserterItems = createRegistrySelector(
 					rootClientId
 				);
 			} );
-			console.log('hasBlockType', rootClientId,hasBlockType)
 			if ( hasBlockType ) {
 				return true;
 			}
@@ -2207,7 +2202,7 @@ export const getAllowedBlocks = createSelector(
 			return;
 		}
 
-		return getBlockTypes().filter( ( blockType ) =>
+		return getBootstrappedBlockTypes().filter( ( blockType ) =>
 			canIncludeBlockTypeInInserter( state, blockType, rootClientId )
 		);
 	},
@@ -2216,7 +2211,7 @@ export const getAllowedBlocks = createSelector(
 		state.blocks.byClientId,
 		state.settings.allowedBlockTypes,
 		state.settings.templateLock,
-		getBlockTypes(),
+		getBootstrappedBlockTypes(),
 	]
 );
 

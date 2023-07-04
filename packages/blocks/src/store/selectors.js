@@ -81,6 +81,11 @@ export const getBlockNames = createSelector(
 	( state ) => [ state.bootstrappedBlockTypes ]
 );
 
+export const getBootstrappedBlockTypes = createSelector(
+	( state ) => Object.values( state.bootstrappedBlockTypes ),
+	( state ) => [ state.bootstrappedBlockTypes ]
+);
+
 export const getBootstrappedBlockType = ( state, name ) => {
 	return state.bootstrappedBlockTypes[ name ];
 };

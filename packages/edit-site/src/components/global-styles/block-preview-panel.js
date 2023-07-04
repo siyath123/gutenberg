@@ -4,6 +4,7 @@
 import { BlockPreview } from '@wordpress/block-editor';
 import { getBlockType, getBlockFromExample } from '@wordpress/blocks';
 import { __experimentalSpacer as Spacer } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 
 const BlockPreviewPanel = ( { name, variation = '' } ) => {
 	const blockExample = getBlockType( name )?.example;
@@ -14,12 +15,11 @@ const BlockPreviewPanel = ( { name, variation = '' } ) => {
 			className: 'is-style-' + variation,
 		},
 	};
-	const blocks =
-		blockExample &&
-		getBlockFromExample(
-			name,
-			variation ? blockExampleWithVariation : blockExample
-		);
+	const [ blocks, setBlocks ] = useState( null );
+	const example = variation ? blockExampleWithVariation : blockExample;
+	useEffect( () => {
+		getBlockFromExample( name, example ).then( setBlocks );
+	}, [ name, example ] );
 	const viewportWidth = blockExample?.viewportWidth || null;
 	const previewHeight = '150px';
 

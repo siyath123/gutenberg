@@ -6,7 +6,7 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { createBlock } from '@wordpress/blocks';
+import { createBlock, loadBlockType } from '@wordpress/blocks';
 import {
 	InspectorControls,
 	BlockControls,
@@ -113,6 +113,34 @@ function BlockContent( {
 	}
 }
 
+async function getBlockList( parentId, pagesByParentId ) {
+	const childPages = pagesByParentId.get( parentId );
+
+	if ( ! childPages?.length ) {
+		return [];
+	}
+
+	return Promise.all(
+		childPages.map( async ( page ) => {
+			const hasChildren = pagesByParentId.has( page.id );
+			const pageProps = {
+				id: page.id,
+				label:
+					// translators: displayed when a page has an empty title.
+					page.title?.rendered?.trim() !== ''
+						? page.title?.rendered
+						: __( '(no title)' ),
+				title: page.title?.rendered,
+				link: page.url,
+				hasChildren,
+			};
+			const children = await getBlockList( page.id, pagesByParentId );
+			await loadBlockType( 'core/page-list-item' );
+			return createBlock( 'core/page-list-item', pageProps, children );
+		} )
+	);
+}
+
 export default function PageListEdit( {
 	context,
 	clientId,
@@ -208,41 +236,10 @@ export default function PageListEdit( {
 		[ pagesByParentId ]
 	);
 
-	const blockList = useMemo(
-		function getBlockList( parentId = parentPageID ) {
-			const childPages = pagesByParentId.get( parentId );
-
-			if ( ! childPages?.length ) {
-				return [];
-			}
-
-			return childPages.reduce( ( template, page ) => {
-				const hasChildren = pagesByParentId.has( page.id );
-				const pageProps = {
-					id: page.id,
-					label:
-						// translators: displayed when a page has an empty title.
-						page.title?.rendered?.trim() !== ''
-							? page.title?.rendered
-							: __( '(no title)' ),
-					title: page.title?.rendered,
-					link: page.url,
-					hasChildren,
-				};
-				let item = null;
-				const children = getBlockList( page.id );
-				item = createBlock(
-					'core/page-list-item',
-					pageProps,
-					children
-				);
-				template.push( item );
-
-				return template;
-			}, [] );
-		},
-		[ pagesByParentId, parentPageID ]
-	);
+	const [ blockList, setBlockList ] = useState( null );
+	useEffect( () => {
+		getBlockList( parentPageID, pagesByParentId ).then( setBlockList );
+	}, [ pagesByParentId, parentPageID ] );
 
 	const {
 		isNested,

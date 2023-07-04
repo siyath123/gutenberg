@@ -12,7 +12,6 @@ import { _x } from '@wordpress/i18n';
 import i18nBlockSchema from './i18n-block.json';
 import { BLOCK_ICON_DEFAULT } from './constants';
 import { store as blocksStore } from '../store';
-import { getBootstrappedBlockType } from '../store/selectors';
 
 /**
  * An icon type definition. One of a Dashicon slug, an element,
@@ -529,6 +528,10 @@ export function loadBlockType( name ) {
  */
 export function getBlockTypes() {
 	return select( blocksStore ).getBlockTypes();
+}
+
+export function getBootstrappedBlockTypes() {
+	return select( blocksStore ).getBootstrappedBlockTypes();
 }
 
 /**
