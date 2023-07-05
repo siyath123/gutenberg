@@ -1048,11 +1048,11 @@ getSomeDataById( 123 );
 getSomeDataById( '123' );
 ```
 
-This is an opportunity to utilize the `normalizeArgs` property to guarantee consistency.
+This is an opportunity to utilize the `normalizeArgs` property to guarantee consistency by protecting callers from passing incorrect types.
 
 #### Example
 
-For example, if the 3rd argument of the following selector is intended to be a `Number`:
+The _3rd_ argument of the following selector is intended to be a `Number`:
 
 ```js
 const getItemsSelector = ( name, type, id ) => {
@@ -1061,7 +1061,7 @@ const getItemsSelector = ( name, type, id ) => {
 };
 ```
 
-However, it is possible that the `id` parameter will be passed as a `String`. In this case, the `normalizeArgs` method (property) can be defined on the _selector_ to coerce the arguments to the desired type:
+However, it is possible that the `id` parameter will be passed as a `String`. In this case, the `normalizeArgs` method (property) can be defined on the _selector_ to coerce the arguments to the desired type even if they are provided "incorrectly":
 
 ```js
 // Define normalization method.
@@ -1075,7 +1075,7 @@ getItemsSelector.normalizeArgs = ( args ) {
 }
 ```
 
-With this in place the following code will behave consistency:
+With this in place the following code will behave consistently:
 
 ```js
 const getItemsSelector = ( name, type, id ) => {
