@@ -62,10 +62,10 @@ describe( 'Site Editor Performance', () => {
 
 		await createNewPost( { postType: 'page' } );
 
-		await page.evaluate( ( _html ) => {
+		await page.evaluate( async ( _html ) => {
 			const { parse } = window.wp.blocks;
 			const { dispatch } = window.wp.data;
-			const blocks = parse( _html );
+			const blocks = await parse( _html );
 
 			blocks.forEach( ( block ) => {
 				if ( block.name === 'core/image' ) {

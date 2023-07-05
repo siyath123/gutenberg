@@ -121,6 +121,7 @@ export {
 	setGroupingBlockName,
 	getGroupingBlockName,
 	getBlockType,
+	loadBlockType,
 	getBlockTypes,
 	getBlockSupport,
 	hasBlockSupport,

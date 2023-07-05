@@ -61,7 +61,7 @@ add_action( 'admin_menu', 'gutenberg_menu', 9 );
 // disable loading and enqueuing block editor scripts and styles
 add_filter( 'should_load_block_editor_scripts_and_styles', '__return_false', 11 );
 
-add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+// add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
 // Add `editorScript` to Gutenberg block.json data if it's missing
 function add_core_editor_script( $metadata ) {

@@ -155,10 +155,10 @@ export async function loadBlocksFromHtml( page, filepath ) {
 		throw new Error( `File not found (${ filepath })` );
 	}
 
-	return await page.evaluate( ( html ) => {
+	return await page.evaluate( async ( html ) => {
 		const { parse } = window.wp.blocks;
 		const { dispatch } = window.wp.data;
-		const blocks = parse( html );
+		const blocks = await parse( html );
 
 		blocks.forEach( ( block ) => {
 			if ( block.name === 'core/image' ) {
@@ -172,9 +172,10 @@ export async function loadBlocksFromHtml( page, filepath ) {
 }
 
 export async function load1000Paragraphs( page ) {
-	await page.evaluate( () => {
-		const { createBlock } = window.wp.blocks;
+	await page.evaluate( async () => {
+		const { loadBlockType, createBlock } = window.wp.blocks;
 		const { dispatch } = window.wp.data;
+		await loadBlockType( 'core/paragraph' );
 		const blocks = Array.from( { length: 1000 } ).map( () =>
 			createBlock( 'core/paragraph' )
 		);

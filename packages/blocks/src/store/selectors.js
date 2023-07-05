@@ -131,11 +131,6 @@ export function getBlockType( state, name ) {
 	return state.blockTypes[ name ];
 }
 
-// export function loadBlockType( state, name ) {
-// 	const blockType = state.blockTypes[ name ];
-// 	return blockType;
-// }
-
 /**
  * Returns block styles by block name.
  *

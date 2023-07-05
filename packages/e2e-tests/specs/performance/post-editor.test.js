@@ -37,10 +37,10 @@ import {
 jest.setTimeout( 1000000 );
 
 async function loadHtmlIntoTheBlockEditor( html ) {
-	await page.evaluate( ( _html ) => {
+	await page.evaluate( async ( _html ) => {
 		const { parse } = window.wp.blocks;
 		const { dispatch } = window.wp.data;
-		const blocks = parse( _html );
+		const blocks = await parse( _html );
 
 		blocks.forEach( ( block ) => {
 			if ( block.name === 'core/image' ) {
@@ -54,9 +54,10 @@ async function loadHtmlIntoTheBlockEditor( html ) {
 }
 
 async function load1000Paragraphs() {
-	await page.evaluate( () => {
-		const { createBlock } = window.wp.blocks;
+	await page.evaluate( async () => {
+		const { loadBlockType, createBlock } = window.wp.blocks;
 		const { dispatch } = window.wp.data;
+		await loadBlockType( 'core/paragraph' );
 		const blocks = Array.from( { length: 1000 } ).map( () =>
 			createBlock( 'core/paragraph' )
 		);
