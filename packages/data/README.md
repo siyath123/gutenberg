@@ -1056,7 +1056,6 @@ The _3rd_ argument of the following selector is intended to be a `Number`:
 
 ```js
 const getItemsSelector = ( name, type, id ) => {
-	// here 'id' is now guaranteed to be a number.
 	return state.items[ name ][ type ][ id ] || null;
 };
 ```
