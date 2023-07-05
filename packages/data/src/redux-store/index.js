@@ -609,7 +609,6 @@ function mapSelectorWithResolver(
 
 	const selectorResolver = ( ...args ) => {
 		args = normalize( selector, args );
-
 		fulfillSelector( args );
 		return selector( ...args );
 	};
