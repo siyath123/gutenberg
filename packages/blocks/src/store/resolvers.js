@@ -28,24 +28,17 @@ export const getBlockType = ( name ) => async () => {
 			.map(
 				( mod ) =>
 					new Promise( ( resolve, reject ) => {
-						console.log(
-							'loading',
-							name,
-							mod.type,
-							mod.handle,
-							mod.src
-						);
 						const node = loaderElement( mod.type, mod.src );
 						node.onload = () => {
-							console.log( 'loaded', mod.type, mod.handle );
 							resolve();
 						};
-						node.onerror = () =>
+						node.onerror = () => {
 							reject(
 								new Error(
 									`Failed to load ${ mod.type } ${ name } ${ mod.handle } ${ mod.src }`
 								)
 							);
+						};
 						document.body.appendChild( node );
 					} )
 			)

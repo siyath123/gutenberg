@@ -6,9 +6,10 @@ import { parse } from '@wordpress/blocks';
 export const __experimentalGetParsedPattern =
 	( patternName ) =>
 	async ( { select, dispatch } ) => {
-		const pattern = select(
-			( state ) =>
-				state.settings.__experimentalBlockPatterns[ patternName ]
+		const pattern = select( ( state ) =>
+			state.root.settings.__experimentalBlockPatterns.find(
+				( { name } ) => name === patternName
+			)
 		);
 		if ( ! pattern ) {
 			return;
@@ -17,5 +18,9 @@ export const __experimentalGetParsedPattern =
 			__unstableSkipMigrationLogs: true,
 		} );
 		const parsedPattern = { ...pattern, blocks };
-		dispatch( { type: 'SET_PARSED_PATTERN', pattern, parsedPattern } );
+		dispatch( {
+			type: 'SET_PARSED_PATTERN',
+			patternName,
+			parsedPattern,
+		} );
 	};

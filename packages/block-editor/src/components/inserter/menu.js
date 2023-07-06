@@ -71,10 +71,11 @@ function InserterMenu(
 		( select ) => {
 			const { __experimentalGetAllowedPatterns, getInserterItems } =
 				select( blockEditorStore );
+			const patterns = __experimentalGetAllowedPatterns(
+				destinationRootClientId
+			);
 			return {
-				showPatterns:
-					__experimentalGetAllowedPatterns( destinationRootClientId )
-						.length > 0,
+				showPatterns: patterns ? patterns.length > 0 : null,
 				hasReusableBlocks: getInserterItems(
 					destinationRootClientId
 				).some( ( item ) => item.category === 'reusable' ),
@@ -84,7 +85,7 @@ function InserterMenu(
 	);
 
 	const mediaCategories = useMediaCategories( destinationRootClientId );
-	const showMedia = !! mediaCategories.length;
+	const showMedia = mediaCategories.length > 0;
 
 	const onInsert = useCallback(
 		( blocks, meta, shouldForceFocusBlock ) => {
@@ -221,17 +222,22 @@ function InserterMenu(
 		},
 	} ) );
 
+	const readyToShow = showPatterns !== null;
+
 	const showPatternPanel =
 		selectedTab === 'patterns' &&
 		! delayedFilterValue &&
 		selectedPatternCategory;
+
 	const showAsTabs =
 		! delayedFilterValue &&
 		( showPatterns || hasReusableBlocks || showMedia );
+
 	const showMediaPanel =
 		selectedTab === 'media' &&
 		! delayedFilterValue &&
 		selectedMediaCategory;
+
 	return (
 		<div className="block-editor-inserter__menu">
 			<div
@@ -251,7 +257,7 @@ function InserterMenu(
 					placeholder={ __( 'Search' ) }
 					ref={ searchRef }
 				/>
-				{ !! delayedFilterValue && (
+				{ readyToShow && delayedFilterValue && (
 					<div className="block-editor-inserter__no-tab-container">
 						<InserterSearchResults
 							filterValue={ delayedFilterValue }
@@ -268,7 +274,7 @@ function InserterMenu(
 						/>
 					</div>
 				) }
-				{ showAsTabs && (
+				{ readyToShow && showAsTabs && (
 					<InserterTabs
 						showPatterns={ showPatterns }
 						showReusableBlocks={ hasReusableBlocks }
@@ -279,7 +285,7 @@ function InserterMenu(
 						{ getCurrentTab }
 					</InserterTabs>
 				) }
-				{ ! delayedFilterValue && ! showAsTabs && (
+				{ readyToShow && ! delayedFilterValue && ! showAsTabs && (
 					<div className="block-editor-inserter__no-tab-container">
 						{ blocksTab }
 					</div>

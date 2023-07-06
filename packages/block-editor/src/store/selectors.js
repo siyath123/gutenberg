@@ -2317,41 +2317,8 @@ function getUnsyncedPatterns( state ) {
 }
 
 export const __experimentalGetParsedPattern = ( state, patternName ) => {
-	const patterns = state.settings.__experimentalBlockPatterns;
-	const unsyncedPatterns = getUnsyncedPatterns( state );
-	const pattern = [ ...patterns, ...unsyncedPatterns ].find(
-		( { name } ) => name === patternName
-	);
-	if ( ! pattern ) {
-		return null;
-	}
-	return state.parsedPatterns.get( pattern ) ?? null;
+	return state.parsedPatterns[ patternName ] ?? null;
 };
-
-const getAllAllowedPatterns = createSelector(
-	( state ) => {
-		const patterns = state.settings.__experimentalBlockPatterns;
-		const unsyncedPatterns = getUnsyncedPatterns( state );
-
-		const { allowedBlockTypes } = getSettings( state );
-
-		const parsedPatterns = [ ...patterns, ...unsyncedPatterns ]
-			.filter( ( { inserter = true } ) => inserter )
-			.map( ( { name } ) =>
-				__experimentalGetParsedPattern( state, name )
-			)
-			.filter( Boolean );
-		const allowedPatterns = parsedPatterns.filter( ( { blocks } ) =>
-			checkAllowListRecursive( blocks, allowedBlockTypes )
-		);
-		return allowedPatterns;
-	},
-	( state ) => [
-		state.settings.__experimentalBlockPatterns,
-		state.settings.__experimentalReusableBlocks,
-		state.settings.allowedBlockTypes,
-	]
-);
 
 /**
  * Returns the list of allowed patterns for inner blocks children.
@@ -2363,15 +2330,30 @@ const getAllAllowedPatterns = createSelector(
  */
 export const __experimentalGetAllowedPatterns = createSelector(
 	( state, rootClientId = null ) => {
-		const availableParsedPatterns = getAllAllowedPatterns( state );
-		const patternsAllowed = availableParsedPatterns.filter(
+		const patterns = state.settings.__experimentalBlockPatterns;
+		const unsyncedPatterns = getUnsyncedPatterns( state );
+
+		const inserterPatterns = [ ...patterns, ...unsyncedPatterns ].filter(
+			( { inserter = true } ) => inserter
+		);
+
+		const parsedPatterns = inserterPatterns.map( ( pattern ) =>
+			__experimentalGetParsedPattern( state, pattern.name )
+		);
+
+		if ( parsedPatterns.some( ( p ) => ! p ) ) {
+			return null;
+		}
+		const { allowedBlockTypes } = getSettings( state );
+		const allowedPatterns = parsedPatterns.filter(
 			( { blocks } ) =>
-				blocks.every( ( { name } ) =>
-					canInsertBlockType( state, name, rootClientId )
+				checkAllowListRecursive( blocks, allowedBlockTypes ) &&
+				blocks.every( ( block ) =>
+					canInsertBlockType( state, block.name, rootClientId )
 				)
 		);
 
-		return patternsAllowed;
+		return allowedPatterns;
 	},
 	( state, rootClientId ) => [
 		state.settings.__experimentalBlockPatterns,
@@ -2380,6 +2362,7 @@ export const __experimentalGetAllowedPatterns = createSelector(
 		state.settings.templateLock,
 		state.blockListSettings[ rootClientId ],
 		state.blocks.byClientId.get( rootClientId ),
+		state.parsedPatterns,
 	]
 );
 
@@ -2403,6 +2386,11 @@ export const getPatternsByBlockTypes = createSelector(
 			state,
 			rootClientId
 		);
+
+		if ( ! patterns ) {
+			return null;
+		}
+
 		const normalizedBlockNames = Array.isArray( blockNames )
 			? blockNames
 			: [ blockNames ];

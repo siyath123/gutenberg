@@ -34,24 +34,16 @@ function InserterTabs( {
 	showReusableBlocks = false,
 	showMedia = false,
 	onSelect,
-	prioritizePatterns,
+	prioritizePatterns = false,
 } ) {
 	const tabs = useMemo( () => {
-		const tempTabs = [];
-		if ( prioritizePatterns && showPatterns ) {
-			tempTabs.push( patternsTab );
-		}
-		tempTabs.push( blocksTab );
-		if ( ! prioritizePatterns && showPatterns ) {
-			tempTabs.push( patternsTab );
-		}
-		if ( showMedia ) {
-			tempTabs.push( mediaTab );
-		}
-		if ( showReusableBlocks ) {
-			tempTabs.push( reusableBlocksTab );
-		}
-		return tempTabs;
+		return [
+			prioritizePatterns && showPatterns && patternsTab,
+			blocksTab,
+			! prioritizePatterns && showPatterns && patternsTab,
+			showMedia && mediaTab,
+			showReusableBlocks && reusableBlocksTab,
+		].filter( Boolean );
 	}, [ prioritizePatterns, showPatterns, showReusableBlocks, showMedia ] );
 
 	return (

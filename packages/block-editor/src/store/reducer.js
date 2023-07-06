@@ -1914,13 +1914,13 @@ export function blockEditingModes( state = new Map(), action ) {
 	return state;
 }
 
-export function parsedPatterns( state = new WeakMap(), action ) {
+export function parsedPatterns( state = {}, action ) {
 	switch ( action.type ) {
 		case 'SET_PARSED_PATTERN':
-			return new WeakMap( state ).set(
-				action.pattern,
-				action.parsedPattern
-			);
+			return {
+				...state,
+				[ action.patternName ]: action.parsedPattern,
+			};
 	}
 	return state;
 }
