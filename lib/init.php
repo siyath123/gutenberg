@@ -61,24 +61,6 @@ add_action( 'admin_menu', 'gutenberg_menu', 9 );
 // disable loading and enqueuing block editor scripts and styles
 add_filter( 'should_load_block_editor_scripts_and_styles', '__return_false', 11 );
 
-// add_filter( 'should_load_separate_core_block_assets', '__return_true' );
-
-// Add `editorScript` to Gutenberg block.json data if it's missing
-function add_core_editor_script( $metadata ) {
-	if ( ! empty( $metadata['name'] ) && str_starts_with( $metadata['name'], 'core/' ) ) {
-		$block_name = str_replace( 'core/', '', $metadata['name'] );
-		if ( ! isset( $metadata['editorScript'] ) ) {
-			if ( isset( $metadata['file'] ) && strstr( $metadata['file'], 'gutenberg') ) {
-				$metadata['editorScript'] = "file:./editor.min.js";
-			}
-		}
-	}
-
-	return $metadata;
-}
-
-add_filter( 'block_type_metadata', 'add_core_editor_script' );
-
 function get_block_importmap() {
 	$block_registry = WP_Block_Type_Registry::get_instance();
 	$scripts = wp_scripts();
@@ -100,6 +82,9 @@ function get_block_importmap() {
 		}
 		if ( isset( $block_type->editor_style_handles ) ) {
 			foreach ( $block_type->editor_style_handles as $handle ) {
+				if ( ! isset( $styles->registered[ $handle ] ) ) {
+					continue;
+				}
 				$spec = $styles->registered[ $handle ];
 				$imports[] = array(
 					'type' => 'style',
