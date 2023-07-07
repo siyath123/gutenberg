@@ -175,7 +175,7 @@ export async function load1000Paragraphs( page ) {
 	await page.evaluate( async () => {
 		const { loadBlockType, createBlock } = window.wp.blocks;
 		const { dispatch } = window.wp.data;
-		await loadBlockType( 'core/paragraph' );
+		await loadBlockType?.( 'core/paragraph' );
 		const blocks = Array.from( { length: 1000 } ).map( () =>
 			createBlock( 'core/paragraph' )
 		);
