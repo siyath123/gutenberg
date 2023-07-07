@@ -7,7 +7,10 @@
 	"category": "theme",
 	"description": "Show minutes required to finish reading the post.",
 	"textdomain": "default",
-	"usesContext": [ "postId", "postType" ],
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -43,5 +46,7 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

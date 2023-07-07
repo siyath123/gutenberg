@@ -22,7 +22,11 @@
 			"default": "date"
 		}
 	},
-	"usesContext": [ "postId", "postType", "queryId" ],
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -51,5 +55,7 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -12,7 +12,9 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "postId" ],
+	"usesContext": [
+		"postId"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -39,5 +41,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

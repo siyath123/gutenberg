@@ -5,7 +5,10 @@
 	"title": "Page List",
 	"category": "widgets",
 	"description": "Display a list of all pages.",
-	"keywords": [ "menu", "navigation" ],
+	"keywords": [
+		"menu",
+		"navigation"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"parentPageID": {
@@ -49,6 +52,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-page-list-editor",
-	"style": "wp-block-page-list"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

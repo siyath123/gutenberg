@@ -23,7 +23,11 @@
 			"default": "_self"
 		}
 	},
-	"usesContext": [ "postType", "postId", "commentId" ],
+	"usesContext": [
+		"postType",
+		"postId",
+		"commentId"
+	],
 	"supports": {
 		"html": false,
 		"align": true,
@@ -48,6 +52,6 @@
 			"__experimentalDuotone": "img"
 		}
 	},
-	"editorStyle": "wp-block-avatar-editor",
-	"style": "wp-block-avatar"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

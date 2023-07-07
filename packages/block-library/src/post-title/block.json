@@ -6,7 +6,11 @@
 	"category": "theme",
 	"description": "Displays the title of a post, page, or any other content-type.",
 	"textdomain": "default",
-	"usesContext": [ "postId", "postType", "queryId" ],
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -30,7 +34,10 @@
 		}
 	},
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
 		"color": {
 			"gradients": true,
@@ -61,5 +68,6 @@
 			}
 		}
 	},
-	"style": "wp-block-post-title"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

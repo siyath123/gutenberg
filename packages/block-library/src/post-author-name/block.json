@@ -19,7 +19,10 @@
 			"default": "_self"
 		}
 	},
-	"usesContext": [ "postType", "postId" ],
+	"usesContext": [
+		"postType",
+		"postId"
+	],
 	"supports": {
 		"html": false,
 		"spacing": {
@@ -48,5 +51,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

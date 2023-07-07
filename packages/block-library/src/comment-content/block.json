@@ -4,10 +4,14 @@
 	"name": "core/comment-content",
 	"title": "Comment Content",
 	"category": "theme",
-	"ancestor": [ "core/comment-template" ],
+	"ancestor": [
+		"core/comment-template"
+	],
 	"description": "Displays the contents of a comment.",
 	"textdomain": "default",
-	"usesContext": [ "commentId" ],
+	"usesContext": [
+		"commentId"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -36,11 +40,16 @@
 			}
 		},
 		"spacing": {
-			"padding": [ "horizontal", "vertical" ],
+			"padding": [
+				"horizontal",
+				"vertical"
+			],
 			"__experimentalDefaultControls": {
 				"padding": true
 			}
 		},
 		"html": false
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

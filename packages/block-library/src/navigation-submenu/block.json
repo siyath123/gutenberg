@@ -4,7 +4,9 @@
 	"name": "core/navigation-submenu",
 	"title": "Submenu",
 	"category": "design",
-	"parent": [ "core/navigation" ],
+	"parent": [
+		"core/navigation"
+	],
 	"description": "Add a submenu to your navigation.",
 	"textdomain": "default",
 	"attributes": {
@@ -60,6 +62,6 @@
 		"reusable": false,
 		"html": false
 	},
-	"editorStyle": "wp-block-navigation-submenu-editor",
-	"style": "wp-block-navigation-submenu"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

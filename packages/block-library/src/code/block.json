@@ -14,7 +14,9 @@
 		}
 	},
 	"supports": {
-		"align": [ "wide" ],
+		"align": [
+			"wide"
+		],
 		"anchor": true,
 		"typography": {
 			"fontSize": true,
@@ -30,7 +32,10 @@
 			}
 		},
 		"spacing": {
-			"margin": [ "top", "bottom" ],
+			"margin": [
+				"top",
+				"bottom"
+			],
 			"padding": true,
 			"__experimentalDefaultControls": {
 				"margin": false,
@@ -57,5 +62,6 @@
 			}
 		}
 	},
-	"style": "wp-block-code"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -4,9 +4,15 @@
 	"name": "core/page-list-item",
 	"title": "Page List Item",
 	"category": "widgets",
-	"parent": [ "core/page-list" ],
+	"parent": [
+		"core/page-list"
+	],
 	"description": "Displays a page inside a list of all pages.",
-	"keywords": [ "page", "menu", "navigation" ],
+	"keywords": [
+		"page",
+		"menu",
+		"navigation"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"id": {
@@ -47,6 +53,5 @@
 		"inserter": false,
 		"__experimentalToolbar": false
 	},
-	"editorStyle": "wp-block-page-list-editor",
-	"style": "wp-block-page-list"
+	"editorScript": "file:./editor.min.js"
 }

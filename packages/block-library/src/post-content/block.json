@@ -6,9 +6,16 @@
 	"category": "theme",
 	"description": "Displays the contents of a post or page.",
 	"textdomain": "default",
-	"usesContext": [ "postId", "postType", "queryId" ],
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId"
+	],
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
 		"layout": true,
 		"dimensions": {
@@ -28,5 +35,5 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-post-content-editor"
+	"editorScript": "file:./editor.min.js"
 }

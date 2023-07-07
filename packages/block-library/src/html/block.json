@@ -5,7 +5,9 @@
 	"title": "Custom HTML",
 	"category": "widgets",
 	"description": "Add custom HTML code and preview it as you edit.",
-	"keywords": [ "embed" ],
+	"keywords": [
+		"embed"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"content": {
@@ -18,5 +20,6 @@
 		"className": false,
 		"html": false
 	},
-	"editorStyle": "wp-block-html-editor"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

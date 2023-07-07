@@ -72,22 +72,36 @@
 			"type": "array"
 		},
 		"templateLock": {
-			"type": [ "string", "boolean" ],
-			"enum": [ "all", "insert", "contentOnly", false ]
+			"type": [
+				"string",
+				"boolean"
+			],
+			"enum": [
+				"all",
+				"insert",
+				"contentOnly",
+				false
+			]
 		},
 		"tagName": {
 			"type": "string",
 			"default": "div"
 		}
 	},
-	"usesContext": [ "postId", "postType" ],
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"supports": {
 		"anchor": true,
 		"align": true,
 		"html": false,
 		"spacing": {
 			"padding": true,
-			"margin": [ "top", "bottom" ],
+			"margin": [
+				"top",
+				"bottom"
+			],
 			"blockGap": true,
 			"__experimentalDefaultControls": {
 				"padding": true,
@@ -111,7 +125,9 @@
 			"heading": true,
 			"text": true,
 			"background": false,
-			"__experimentalSkipSerialization": [ "gradients" ]
+			"__experimentalSkipSerialization": [
+				"gradients"
+			]
 		},
 		"typography": {
 			"fontSize": true,
@@ -130,6 +146,6 @@
 			"allowJustification": false
 		}
 	},
-	"editorStyle": "wp-block-cover-editor",
-	"style": "wp-block-cover"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

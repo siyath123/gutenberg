@@ -26,7 +26,12 @@
 	},
 	"supports": {
 		"anchor": true,
-		"align": [ "left", "right", "wide", "full" ],
+		"align": [
+			"left",
+			"right",
+			"wide",
+			"full"
+		],
 		"color": {
 			"gradients": true,
 			"background": true,
@@ -69,6 +74,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-pullquote-editor",
-	"style": "wp-block-pullquote"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

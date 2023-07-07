@@ -15,5 +15,7 @@
 		"customClassName": false,
 		"html": false,
 		"inserter": false
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -15,7 +15,9 @@
 			"default": "_self"
 		}
 	},
-	"usesContext": [ "postId" ],
+	"usesContext": [
+		"postId"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -37,7 +39,10 @@
 			}
 		},
 		"spacing": {
-			"margin": [ "top", "bottom" ],
+			"margin": [
+				"top",
+				"bottom"
+			],
 			"padding": true,
 			"__experimentalDefaultControls": {
 				"padding": true
@@ -52,5 +57,6 @@
 			}
 		}
 	},
-	"style": "wp-block-read-more"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

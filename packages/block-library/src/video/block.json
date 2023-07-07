@@ -5,7 +5,9 @@
 	"title": "Video",
 	"category": "media",
 	"description": "Embed a video from your media library or upload a new one.",
-	"keywords": [ "movie" ],
+	"keywords": [
+		"movie"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"autoplay": {
@@ -90,6 +92,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-video-editor",
-	"style": "wp-block-video"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

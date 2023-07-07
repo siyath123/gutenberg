@@ -4,10 +4,15 @@
 	"name": "core/comments-title",
 	"title": "Comments Title",
 	"category": "theme",
-	"ancestor": [ "core/comments" ],
+	"ancestor": [
+		"core/comments"
+	],
 	"description": "Displays a title with the number of comments",
 	"textdomain": "default",
-	"usesContext": [ "postId", "postType" ],
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -62,5 +67,7 @@
 				"__experimentalFontWeight": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

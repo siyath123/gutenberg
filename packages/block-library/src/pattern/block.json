@@ -14,5 +14,6 @@
 		"slug": {
 			"type": "string"
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

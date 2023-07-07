@@ -5,7 +5,10 @@
 	"title": "Quote",
 	"category": "text",
 	"description": "Give quoted text visual emphasis. \"In quoting others, we cite ourselves.\" — Julio Cortázar",
-	"keywords": [ "blockquote", "cite" ],
+	"keywords": [
+		"blockquote",
+		"cite"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"value": {
@@ -61,8 +64,11 @@
 			"label": "Default",
 			"isDefault": true
 		},
-		{ "name": "plain", "label": "Plain" }
+		{
+			"name": "plain",
+			"label": "Plain"
+		}
 	],
-	"editorStyle": "wp-block-quote-editor",
-	"style": "wp-block-quote"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

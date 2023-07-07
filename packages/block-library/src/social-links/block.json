@@ -5,7 +5,9 @@
 	"title": "Social Icons",
 	"category": "widgets",
 	"description": "Display icons linking to your social media profiles or sites.",
-	"keywords": [ "links" ],
+	"keywords": [
+		"links"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"iconColor": {
@@ -47,7 +49,11 @@
 		"iconBackgroundColorValue": "iconBackgroundColorValue"
 	},
 	"supports": {
-		"align": [ "left", "center", "right" ],
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
 		"anchor": true,
 		"__experimentalExposeControlsToChildren": true,
 		"layout": {
@@ -68,10 +74,19 @@
 			}
 		},
 		"spacing": {
-			"blockGap": [ "horizontal", "vertical" ],
+			"blockGap": [
+				"horizontal",
+				"vertical"
+			],
 			"margin": true,
 			"padding": true,
-			"units": [ "px", "em", "rem", "vh", "vw" ],
+			"units": [
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw"
+			],
 			"__experimentalDefaultControls": {
 				"blockGap": true,
 				"margin": true,
@@ -80,10 +95,20 @@
 		}
 	},
 	"styles": [
-		{ "name": "default", "label": "Default", "isDefault": true },
-		{ "name": "logos-only", "label": "Logos Only" },
-		{ "name": "pill-shape", "label": "Pill Shape" }
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		},
+		{
+			"name": "logos-only",
+			"label": "Logos Only"
+		},
+		{
+			"name": "pill-shape",
+			"label": "Pill Shape"
+		}
 	],
-	"editorStyle": "wp-block-social-links-editor",
-	"style": "wp-block-social-links"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -4,7 +4,9 @@
 	"name": "core/query-pagination",
 	"title": "Pagination",
 	"category": "theme",
-	"parent": [ "core/query" ],
+	"parent": [
+		"core/query"
+	],
 	"description": "Displays a paginated navigation to next/previous set of posts, when applicable.",
 	"textdomain": "default",
 	"attributes": {
@@ -17,7 +19,10 @@
 			"default": true
 		}
 	},
-	"usesContext": [ "queryId", "query" ],
+	"usesContext": [
+		"queryId",
+		"query"
+	],
 	"providesContext": {
 		"paginationArrow": "paginationArrow",
 		"showLabel": "showLabel"
@@ -56,6 +61,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-query-pagination-editor",
-	"style": "wp-block-query-pagination"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

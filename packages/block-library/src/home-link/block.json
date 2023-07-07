@@ -3,7 +3,9 @@
 	"apiVersion": 3,
 	"name": "core/home-link",
 	"category": "design",
-	"parent": [ "core/navigation" ],
+	"parent": [
+		"core/navigation"
+	],
 	"title": "Home Link",
 	"description": "Create a link that always points to the homepage of the site. Usually not necessary if there is already a site title link present in the header.",
 	"textdomain": "default",
@@ -38,6 +40,5 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-home-link-editor",
-	"style": "wp-block-home-link"
+	"editorScript": "file:./editor.min.js"
 }

@@ -5,7 +5,10 @@
 	"title": "Verse",
 	"category": "text",
 	"description": "Insert poetry. Use special spacing formats. Or quote song lyrics.",
-	"keywords": [ "poetry", "poem" ],
+	"keywords": [
+		"poetry",
+		"poem"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"content": {
@@ -59,6 +62,6 @@
 			"style": true
 		}
 	},
-	"style": "wp-block-verse",
-	"editorStyle": "wp-block-verse-editor"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -5,7 +5,10 @@
 	"title": "Heading",
 	"category": "text",
 	"description": "Introduce new sections and organize content to help visitors (and search engines) understand the structure of your content.",
-	"keywords": [ "title", "subtitle" ],
+	"keywords": [
+		"title",
+		"subtitle"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"textAlign": {
@@ -27,7 +30,10 @@
 		}
 	},
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"anchor": true,
 		"className": true,
 		"color": {
@@ -64,6 +70,6 @@
 		"__unstablePasteTextInline": true,
 		"__experimentalSlashInserter": true
 	},
-	"editorStyle": "wp-block-heading-editor",
-	"style": "wp-block-heading"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -5,7 +5,10 @@
 	"title": "Media & Text",
 	"category": "media",
 	"description": "Set media and words side-by-side for a richer layout.",
-	"keywords": [ "image", "video" ],
+	"keywords": [
+		"image",
+		"video"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"align": {
@@ -96,7 +99,10 @@
 	},
 	"supports": {
 		"anchor": true,
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
 		"color": {
 			"gradients": true,
@@ -125,6 +131,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-media-text-editor",
-	"style": "wp-block-media-text"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

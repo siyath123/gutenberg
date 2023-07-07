@@ -4,7 +4,9 @@
 	"name": "core/column",
 	"title": "Column",
 	"category": "design",
-	"parent": [ "core/columns" ],
+	"parent": [
+		"core/columns"
+	],
 	"description": "A single column within a columns block.",
 	"textdomain": "default",
 	"attributes": {
@@ -18,8 +20,16 @@
 			"type": "array"
 		},
 		"templateLock": {
-			"type": [ "string", "boolean" ],
-			"enum": [ "all", "insert", "contentOnly", false ]
+			"type": [
+				"string",
+				"boolean"
+			],
+			"enum": [
+				"all",
+				"insert",
+				"contentOnly",
+				false
+			]
 		}
 	},
 	"supports": {
@@ -67,5 +77,6 @@
 			}
 		},
 		"layout": true
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

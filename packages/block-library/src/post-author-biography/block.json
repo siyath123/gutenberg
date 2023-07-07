@@ -11,7 +11,10 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "postType", "postId" ],
+	"usesContext": [
+		"postType",
+		"postId"
+	],
 	"supports": {
 		"spacing": {
 			"margin": true,
@@ -38,5 +41,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

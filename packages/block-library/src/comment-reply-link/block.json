@@ -4,10 +4,14 @@
 	"name": "core/comment-reply-link",
 	"title": "Comment Reply Link",
 	"category": "theme",
-	"ancestor": [ "core/comment-template" ],
+	"ancestor": [
+		"core/comment-template"
+	],
 	"description": "Displays a link to reply to a comment.",
 	"textdomain": "default",
-	"usesContext": [ "commentId" ],
+	"usesContext": [
+		"commentId"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -41,5 +45,6 @@
 			}
 		},
 		"html": false
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

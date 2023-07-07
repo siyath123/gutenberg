@@ -5,7 +5,9 @@
 	"name": "core/comment-author-avatar",
 	"title": "Comment Author Avatar (deprecated)",
 	"category": "theme",
-	"ancestor": [ "core/comment-template" ],
+	"ancestor": [
+		"core/comment-template"
+	],
 	"description": "This block is deprecated. Please use the Avatar block instead.",
 	"textdomain": "default",
 	"attributes": {
@@ -18,7 +20,9 @@
 			"default": 96
 		}
 	},
-	"usesContext": [ "commentId" ],
+	"usesContext": [
+		"commentId"
+	],
 	"supports": {
 		"html": false,
 		"inserter": false,
@@ -40,5 +44,7 @@
 			"margin": true,
 			"padding": true
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -11,7 +11,10 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "postId", "postType" ],
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -39,10 +42,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-post-comments-form-editor",
-	"style": [
-		"wp-block-post-comments-form",
-		"wp-block-buttons",
-		"wp-block-button"
-	]
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

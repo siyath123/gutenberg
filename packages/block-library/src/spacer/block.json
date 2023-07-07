@@ -15,16 +15,21 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "orientation" ],
+	"usesContext": [
+		"orientation"
+	],
 	"supports": {
 		"anchor": true,
 		"spacing": {
-			"margin": [ "top", "bottom" ],
+			"margin": [
+				"top",
+				"bottom"
+			],
 			"__experimentalDefaultControls": {
 				"margin": true
 			}
 		}
 	},
-	"editorStyle": "wp-block-spacer-editor",
-	"style": "wp-block-spacer"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

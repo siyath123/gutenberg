@@ -5,7 +5,9 @@
 	"title": "Latest Posts",
 	"category": "widgets",
 	"description": "Display a list of your most recent posts.",
-	"keywords": [ "recent posts" ],
+	"keywords": [
+		"recent posts"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"categories": {
@@ -63,7 +65,11 @@
 		},
 		"featuredImageAlign": {
 			"type": "string",
-			"enum": [ "left", "center", "right" ]
+			"enum": [
+				"left",
+				"center",
+				"right"
+			]
 		},
 		"featuredImageSizeSlug": {
 			"type": "string",
@@ -112,6 +118,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-latest-posts-editor",
-	"style": "wp-block-latest-posts"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

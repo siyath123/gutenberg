@@ -5,7 +5,10 @@
 	"title": "Calendar",
 	"category": "widgets",
 	"description": "A calendar of your site’s posts.",
-	"keywords": [ "posts", "archive" ],
+	"keywords": [
+		"posts",
+		"archive"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"month": {
@@ -19,7 +22,10 @@
 		"align": true,
 		"color": {
 			"link": true,
-			"__experimentalSkipSerialization": [ "text", "background" ],
+			"__experimentalSkipSerialization": [
+				"text",
+				"background"
+			],
 			"__experimentalDefaultControls": {
 				"background": true,
 				"text": true
@@ -39,5 +45,6 @@
 			}
 		}
 	},
-	"style": "wp-block-calendar"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

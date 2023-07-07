@@ -5,7 +5,9 @@
 	"title": "Site Tagline",
 	"category": "theme",
 	"description": "Describe in a few words what the site is about. The tagline can be used in search results or when sharing on social networks even if it’s not displayed in the theme design.",
-	"keywords": [ "description" ],
+	"keywords": [
+		"description"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"textAlign": {
@@ -14,7 +16,10 @@
 	},
 	"example": {},
 	"supports": {
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
 		"color": {
 			"gradients": true,
@@ -45,5 +50,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-site-tagline-editor"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

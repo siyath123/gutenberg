@@ -5,7 +5,11 @@
 	"title": "Login/out",
 	"category": "theme",
 	"description": "Show login & logout links.",
-	"keywords": [ "login", "logout", "form" ],
+	"keywords": [
+		"login",
+		"logout",
+		"form"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"displayLoginAsForm": {
@@ -32,5 +36,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

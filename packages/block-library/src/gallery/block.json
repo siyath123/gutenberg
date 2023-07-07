@@ -5,7 +5,10 @@
 	"title": "Gallery",
 	"category": "media",
 	"description": "Display multiple images in a rich gallery.",
-	"keywords": [ "images", "photos" ],
+	"keywords": [
+		"images",
+		"photos"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"images": {
@@ -108,12 +111,23 @@
 		"anchor": true,
 		"align": true,
 		"html": false,
-		"units": [ "px", "em", "rem", "vh", "vw" ],
+		"units": [
+			"px",
+			"em",
+			"rem",
+			"vh",
+			"vw"
+		],
 		"spacing": {
 			"margin": true,
 			"padding": true,
-			"blockGap": [ "horizontal", "vertical" ],
-			"__experimentalSkipSerialization": [ "blockGap" ],
+			"blockGap": [
+				"horizontal",
+				"vertical"
+			],
+			"__experimentalSkipSerialization": [
+				"blockGap"
+			],
 			"__experimentalDefaultControls": {
 				"blockGap": true,
 				"margin": false,
@@ -134,6 +148,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-gallery-editor",
-	"style": "wp-block-gallery"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

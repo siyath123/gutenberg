@@ -22,7 +22,11 @@
 			"default": 55
 		}
 	},
-	"usesContext": [ "postId", "postType", "queryId" ],
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -52,6 +56,6 @@
 			}
 		}
 	},
-	"editorStyle": "wp-block-post-excerpt-editor",
-	"style": "wp-block-post-excerpt"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

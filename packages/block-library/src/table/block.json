@@ -204,8 +204,11 @@
 			"label": "Default",
 			"isDefault": true
 		},
-		{ "name": "stripes", "label": "Stripes" }
+		{
+			"name": "stripes",
+			"label": "Stripes"
+		}
 	],
-	"editorStyle": "wp-block-table-editor",
-	"style": "wp-block-table"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

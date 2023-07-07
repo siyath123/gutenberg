@@ -53,9 +53,19 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "postId", "postType", "queryId" ],
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId"
+	],
 	"supports": {
-		"align": [ "left", "right", "center", "wide", "full" ],
+		"align": [
+			"left",
+			"right",
+			"center",
+			"wide",
+			"full"
+		],
 		"color": {
 			"__experimentalDuotone": "img, .wp-block-post-featured-image__placeholder, .components-placeholder__illustration, .components-placeholder::before",
 			"text": false,
@@ -79,6 +89,6 @@
 			"padding": true
 		}
 	},
-	"editorStyle": "wp-block-post-featured-image-editor",
-	"style": "wp-block-post-featured-image"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

@@ -4,7 +4,9 @@
 	"name": "core/query-pagination-next",
 	"title": "Next Page",
 	"category": "theme",
-	"parent": [ "core/query-pagination" ],
+	"parent": [
+		"core/query-pagination"
+	],
 	"description": "Displays the next posts page link.",
 	"textdomain": "default",
 	"attributes": {
@@ -12,7 +14,12 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "queryId", "query", "paginationArrow", "showLabel" ],
+	"usesContext": [
+		"queryId",
+		"query",
+		"paginationArrow",
+		"showLabel"
+	],
 	"supports": {
 		"reusable": false,
 		"html": false,
@@ -36,5 +43,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

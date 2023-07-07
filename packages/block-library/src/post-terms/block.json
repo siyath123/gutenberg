@@ -26,7 +26,10 @@
 			"default": ""
 		}
 	},
-	"usesContext": [ "postId", "postType" ],
+	"usesContext": [
+		"postId",
+		"postType"
+	],
 	"supports": {
 		"html": false,
 		"color": {
@@ -56,5 +59,6 @@
 			}
 		}
 	},
-	"style": "wp-block-post-terms"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

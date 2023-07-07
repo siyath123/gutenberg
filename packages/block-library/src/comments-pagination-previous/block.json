@@ -4,7 +4,9 @@
 	"name": "core/comments-pagination-previous",
 	"title": "Comments Previous Page",
 	"category": "theme",
-	"parent": [ "core/comments-pagination" ],
+	"parent": [
+		"core/comments-pagination"
+	],
 	"description": "Displays the previous comment's page link.",
 	"textdomain": "default",
 	"attributes": {
@@ -12,7 +14,10 @@
 			"type": "string"
 		}
 	},
-	"usesContext": [ "postId", "comments/paginationArrow" ],
+	"usesContext": [
+		"postId",
+		"comments/paginationArrow"
+	],
 	"supports": {
 		"reusable": false,
 		"html": false,
@@ -36,5 +41,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

@@ -5,13 +5,19 @@
 	"title": "Page Break",
 	"category": "design",
 	"description": "Separate your content into a multi-page experience.",
-	"keywords": [ "next page", "pagination" ],
-	"parent": [ "core/post-content" ],
+	"keywords": [
+		"next page",
+		"pagination"
+	],
+	"parent": [
+		"core/post-content"
+	],
 	"textdomain": "default",
 	"supports": {
 		"customClassName": false,
 		"className": false,
 		"html": false
 	},
-	"editorStyle": "wp-block-nextpage-editor"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

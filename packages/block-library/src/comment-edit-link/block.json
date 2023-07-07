@@ -4,10 +4,14 @@
 	"name": "core/comment-edit-link",
 	"title": "Comment Edit Link",
 	"category": "theme",
-	"ancestor": [ "core/comment-template" ],
+	"ancestor": [
+		"core/comment-template"
+	],
 	"description": "Displays a link to edit the comment in the WordPress Dashboard. This link is only visible to users with the edit comment capability.",
 	"textdomain": "default",
-	"usesContext": [ "commentId" ],
+	"usesContext": [
+		"commentId"
+	],
 	"attributes": {
 		"linkTarget": {
 			"type": "string",
@@ -45,5 +49,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }

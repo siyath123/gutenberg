@@ -4,9 +4,13 @@
 	"name": "core/button",
 	"title": "Button",
 	"category": "design",
-	"parent": [ "core/buttons" ],
+	"parent": [
+		"core/buttons"
+	],
 	"description": "Prompt visitors to take action with a button-style link.",
-	"keywords": [ "link" ],
+	"keywords": [
+		"link"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"textAlign": {
@@ -91,7 +95,10 @@
 		"shadow": true,
 		"spacing": {
 			"__experimentalSkipSerialization": true,
-			"padding": [ "horizontal", "vertical" ],
+			"padding": [
+				"horizontal",
+				"vertical"
+			],
 			"__experimentalDefaultControls": {
 				"padding": true
 			}
@@ -112,9 +119,16 @@
 		"__experimentalSelector": ".wp-block-button .wp-block-button__link"
 	},
 	"styles": [
-		{ "name": "fill", "label": "Fill", "isDefault": true },
-		{ "name": "outline", "label": "Outline" }
+		{
+			"name": "fill",
+			"label": "Fill",
+			"isDefault": true
+		},
+		{
+			"name": "outline",
+			"label": "Outline"
+		}
 	],
-	"editorStyle": "wp-block-button-editor",
-	"style": "wp-block-button"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

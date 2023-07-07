@@ -5,7 +5,9 @@
 	"title": "Search",
 	"category": "widgets",
 	"description": "Help visitors find your content.",
-	"keywords": [ "find" ],
+	"keywords": [
+		"find"
+	],
 	"textdomain": "default",
 	"attributes": {
 		"label": {
@@ -53,7 +55,11 @@
 		}
 	},
 	"supports": {
-		"align": [ "left", "center", "right" ],
+		"align": [
+			"left",
+			"center",
+			"right"
+		],
 		"color": {
 			"gradients": true,
 			"__experimentalSkipSerialization": true,
@@ -90,6 +96,6 @@
 		},
 		"html": false
 	},
-	"editorStyle": "wp-block-search-editor",
-	"style": "wp-block-search"
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

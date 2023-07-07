@@ -4,10 +4,14 @@
 	"name": "core/comments-pagination-numbers",
 	"title": "Comments Page Numbers",
 	"category": "theme",
-	"parent": [ "core/comments-pagination" ],
+	"parent": [
+		"core/comments-pagination"
+	],
 	"description": "Displays a list of page numbers for comments pagination.",
 	"textdomain": "default",
-	"usesContext": [ "postId" ],
+	"usesContext": [
+		"postId"
+	],
 	"supports": {
 		"reusable": false,
 		"html": false,
@@ -31,5 +35,7 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js",
+	"editorStyle": "file:./editor.css"
 }

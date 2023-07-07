@@ -4,7 +4,9 @@
 	"name": "core/list-item",
 	"title": "List item",
 	"category": "text",
-	"parent": [ "core/list" ],
+	"parent": [
+		"core/list"
+	],
 	"description": "Create a list item.",
 	"textdomain": "default",
 	"attributes": {
@@ -35,5 +37,6 @@
 				"fontSize": true
 			}
 		}
-	}
+	},
+	"editorScript": "file:./editor.min.js"
 }
