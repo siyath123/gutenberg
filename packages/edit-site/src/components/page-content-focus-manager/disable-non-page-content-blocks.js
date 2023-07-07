@@ -6,10 +6,11 @@ import { addFilter, removeFilter } from '@wordpress/hooks';
 import { useBlockEditingMode } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 
-/**
- * Internal dependencies
- */
-import { PAGE_CONTENT_BLOCK_TYPES } from './constants';
+const PAGE_CONTENT_BLOCK_TYPES = [
+	'core/post-title',
+	'core/post-featured-image',
+	'core/post-content',
+];
 
 /**
  * Component that when rendered, makes it so that the site editor allows only
@@ -17,6 +18,7 @@ import { PAGE_CONTENT_BLOCK_TYPES } from './constants';
  */
 export default function DisableNonPageContentBlocks() {
 	useDisableNonPageContentBlocks();
+	return null;
 }
 
 /**
@@ -40,8 +42,11 @@ export function useDisableNonPageContentBlocks() {
 
 const withDisableNonPageContentBlocks = createHigherOrderComponent(
 	( BlockEdit ) => ( props ) => {
-		const isContent = PAGE_CONTENT_BLOCK_TYPES.includes( props.name );
-		const mode = isContent ? 'contentOnly' : undefined;
+		const isDescendentOfQueryLoop = !! props.context.queryId;
+		const isPageContent =
+			PAGE_CONTENT_BLOCK_TYPES.includes( props.name ) &&
+			! isDescendentOfQueryLoop;
+		const mode = isPageContent ? 'contentOnly' : undefined;
 		useBlockEditingMode( mode );
 		return <BlockEdit { ...props } />;
 	},

@@ -166,3 +166,8 @@ export { useBlockEditingMode } from './block-editing-mode';
 
 export { default as BlockEditorProvider } from './provider';
 export { default as useSetting } from './use-setting';
+
+/*
+ * The following rename hint component can be removed in 6.4.
+ */
+export { default as ReusableBlocksRenameHint } from './inserter/reusable-block-rename-hint';
