@@ -2,7 +2,7 @@
  * External dependencies
  */
 import fastDeepEqual from 'fast-deep-equal/es6';
-import { get } from 'lodash';
+import { get, set } from 'lodash';
 
 /**
  * WordPress dependencies
