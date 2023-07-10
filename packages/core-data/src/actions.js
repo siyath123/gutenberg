@@ -19,6 +19,7 @@ import { getOrLoadEntitiesConfig, DEFAULT_ENTITY_KEY } from './entities';
 import { createBatch } from './batch';
 import { STORE_NAME } from './name';
 import { getUndoEdits, getRedoEdits } from './private-selectors';
+import { getSyncProvider } from './sync';
 
 /**
  * Returns an action object used in signalling that authors have been received.
@@ -383,21 +384,30 @@ export const editEntityRecord =
 				return acc;
 			}, {} ),
 		};
-		dispatch( {
-			type: 'EDIT_ENTITY_RECORD',
-			...edit,
-			meta: {
-				undo: ! options.undoIgnore && {
-					...edit,
-					// Send the current values for things like the first undo stack entry.
-					edits: Object.keys( edits ).reduce( ( acc, key ) => {
-						acc[ key ] = editedRecord[ key ];
-						return acc;
-					}, {} ),
-					isCached: options.isCached,
+		if ( entityConfig.syncConfig ) {
+			const objectId = entityConfig.getSyncObjectId( recordId );
+			getSyncProvider().update(
+				entityConfig.syncObjectType + '--edit',
+				objectId,
+				edit.edits
+			);
+		} else {
+			dispatch( {
+				type: 'EDIT_ENTITY_RECORD',
+				...edit,
+				meta: {
+					undo: ! options.undoIgnore && {
+						...edit,
+						// Send the current values for things like the first undo stack entry.
+						edits: Object.keys( edits ).reduce( ( acc, key ) => {
+							acc[ key ] = editedRecord[ key ];
+							return acc;
+						}, {} ),
+						isCached: options.isCached,
+					},
 				},
-			},
-		} );
+			} );
+		}
 	};
 
 /**
