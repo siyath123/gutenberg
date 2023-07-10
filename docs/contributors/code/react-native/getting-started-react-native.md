@@ -4,7 +4,7 @@ Welcome! This is the Getting Started guide for the native mobile port of the blo
 
 ## Prerequisites
 
-For a developer experience closer to the one the project maintainers current have, make sure you have the following tools installed:
+For a developer experience closer to the one the project maintainers currently have, make sure you have the following tools installed:
 
 -   git
 -   [nvm](https://github.com/nvm-sh/nvm)
