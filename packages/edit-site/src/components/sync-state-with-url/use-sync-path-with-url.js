@@ -36,6 +36,12 @@ export function getPathFromURL( urlParams ) {
 	return path;
 }
 
+function isSubset( subset, superset ) {
+	return Object.entries( subset ).every( ( [ key, value ] ) => {
+		return superset[ key ] === value;
+	} );
+}
+
 export default function useSyncPathWithURL() {
 	const history = useHistory();
 	const { params: urlParams } = useLocation();
@@ -46,23 +52,18 @@ export default function useSyncPathWithURL() {
 	} = useNavigator();
 	const isMounting = useRef( true );
 
+	// Update URL params when the navigator path changes.
 	useEffect(
 		() => {
 			// The navigatorParams are only initially filled properly when the
-			// navigator screens mount. so we ignore the first synchronisation.
+			// navigator screens mount, so we ignore the first synchronisation.
 			if ( isMounting.current ) {
 				isMounting.current = false;
 				return;
 			}
 
 			function updateUrlParams( newUrlParams ) {
-				if (
-					Object.entries( newUrlParams ).every(
-						( [ key, value ] ) => {
-							return urlParams[ key ] === value;
-						}
-					)
-				) {
+				if ( isSubset( newUrlParams, urlParams ) ) {
 					return;
 				}
 				const updatedParams = {
@@ -112,6 +113,7 @@ export default function useSyncPathWithURL() {
 		[ navigatorLocation.path, navigatorParams ]
 	);
 
+	// Update navigator path when the URL params change.
 	useEffect(
 		() => {
 			const path = getPathFromURL( urlParams );
