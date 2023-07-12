@@ -370,7 +370,7 @@ describe( 'Selector arguments normalization', () => {
 		const normalizationFunction = jest.fn( ( args ) => {
 			return args.map( Number );
 		} );
-		getFooSelector.normalizeArgs = normalizationFunction;
+		getFooSelector.__unstableNormalizeArgs = normalizationFunction;
 
 		registry.dispatch( 'testStore' ).startResolution( 'getFoo', [ 123 ] );
 		const { getIsResolving, hasStartedResolution, hasFinishedResolution } =
@@ -389,6 +389,6 @@ describe( 'Selector arguments normalization', () => {
 		expect( hasFinishedResolution( 'getFoo', [ '123' ] ) ).toBe( true );
 		expect( normalizationFunction ).toHaveBeenCalledWith( [ '123' ] );
 
-		getFooSelector.normalizeArgs = undefined;
+		getFooSelector.__unstableNormalizeArgs = undefined;
 	} );
 } );

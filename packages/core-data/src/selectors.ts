@@ -305,7 +305,7 @@ export interface GetEntityRecord {
 		key: EntityRecordArgs[ 2 ],
 		query?: EntityRecordArgs[ 3 ]
 	) => EntityRecord | undefined;
-	normalizeArgs?: ( args: EntityRecordArgs ) => EntityRecordArgs;
+	__unstableNormalizeArgs?: ( args: EntityRecordArgs ) => EntityRecordArgs;
 }
 
 /**
@@ -385,7 +385,7 @@ export const getEntityRecord = createSelector(
  * @param args EntityRecordArgs the selector arguments.
  * @return EntityRecordArgs the normalized arguments.
  */
-getEntityRecord.normalizeArgs = (
+getEntityRecord.__unstableNormalizeArgs = (
 	args: EntityRecordArgs
 ): EntityRecordArgs => {
 	let recordKey = args && args[ 2 ];
