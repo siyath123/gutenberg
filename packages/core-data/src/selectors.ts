@@ -388,7 +388,7 @@ export const getEntityRecord = createSelector(
 getEntityRecord.__unstableNormalizeArgs = (
 	args: EntityRecordArgs
 ): EntityRecordArgs => {
-	let recordKey = args && args[ 2 ];
+	let recordKey = args?.[ 2 ];
 
 	// If recordKey looks to be a numeric ID then coerce to number.
 	if (
@@ -397,9 +397,9 @@ getEntityRecord.__unstableNormalizeArgs = (
 		isNumericID( recordKey )
 	) {
 		recordKey = Number( recordKey );
+		args[ 2 ] = recordKey;
 	}
 
-	args[ 2 ] = recordKey;
 	return args;
 };
 
