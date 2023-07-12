@@ -17,6 +17,7 @@ import {
 } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import {
+	useBlockCommands,
 	BlockBreadcrumb,
 	privateApis as blockEditorPrivateApis,
 } from '@wordpress/block-editor';
@@ -76,6 +77,7 @@ const blockRemovalRules = {
 };
 
 function Layout( { styles } ) {
+	useBlockCommands();
 	const isMobileViewport = useViewportMatch( 'medium', '<' );
 	const isHugeViewport = useViewportMatch( 'huge', '>=' );
 	const isLargeViewport = useViewportMatch( 'large' );

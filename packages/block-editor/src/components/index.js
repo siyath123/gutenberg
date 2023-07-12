@@ -165,6 +165,7 @@ export { default as __experimentalInspectorPopoverHeader } from './inspector-pop
 
 export { default as BlockEditorProvider } from './provider';
 export { default as useSetting } from './use-setting';
+export { useBlockCommands } from './use-block-commands';
 
 /*
  * The following rename hint component can be removed in 6.4.
